@@ -1,35 +1,28 @@
-<html>
-<body>
-    <div class="credit-card card">
-        <img src="https://logodix.com/logo/1153460.png" class="visa-png">
-        <p class="card-number">{{cardNumber}}</p>
-        <img src="https://img.icons8.com/office/80/000000/sim-card-chip.png" class="chip-png">
-        <p class="card-holder-head">Card Holder</p>
-        <p class="card-holder">{{cardHolder}}</p>
-    </div>
-    <div class="info-card card">
-        <h3>Payment</h3>
-        <form action="">
-            <div class="content">
-                <label>Credit/Debit card number</label><br>
-                <input type="text" placeholder={{cardNumber}}>
-                <div class="EXPnCVV">
-                    <div>
-                        <label>Expiry date MM/YY</label><br>
-                        <input type="month">
-                    </div>
-                    <div>
-                        <label>CCV/CVV Number</label><br>
-                        <input type="password" placeholder="000">
-                    </div>
-                </div>
-                <label>Card Holder name (English)</label><br>
-                <input type="text" placeholder="{{cardHolder}}">
+<div class="credit-card card">
+    <div class="visa-png"><img src="https://logodix.com/logo/1153460.png"></div>
+    <div class="chip-png"><img src="https://img.icons8.com/office/80/000000/sim-card-chip.png"></div>
+    <div class="card-number"><p>{{cardNumber}}</p></div>
+    <div class="card-holder"><p >{{cardHolder | uppercase}}</p></div>
+    <div class="card-exp"><p>{{cardExp}}</p></div>
+    <div></div>
+    
+    
+</div>
+<div class="info-card card">
+    <h3>Payment</h3>
+    <div class="content">
+        <label>Credit/Debit card number</label><br>
+        <input type="text" placeholder="#### #### #### ####" inputmode="numeric" maxlength="16" [(ngModel)]="getNumber" (change)="setCardNumber()">
+            <div class="left">
+                <label>Expiry date</label><br>
+                <input type="month" [(ngModel)]="getExp" (change)="setExp()">
             </div>
-            <input type="button" value="Submit">
-        </form>
+            <div class="right">
+                <label>CCV/CVV Number</label><br>
+                <input type="text" inputmode="numeric" maxlength="3" placeholder="000" [(ngModel)]="cardCVV" (change)="setCVV()">
+            </div>
+        <label>Card Holder name (English)</label><br>
+        <input type="text" placeholder="Name" [(ngModel)]="getName" (change)="setName()">
     </div>
-
-</body>
-
-</html>
+    <input type="button" value="Submit">
+</div>
