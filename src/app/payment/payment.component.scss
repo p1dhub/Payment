@@ -1,0 +1,93 @@
+
+$credit-height: 5.398cm;
+$credit-width: 8.56cm;
+
+.card {
+  border-radius: 2mm;
+  background-color: white;
+  box-shadow: 5px 5px 10px black;
+  padding: 1.5rem;
+}
+
+.credit-card {
+  z-index: 1;
+  width: $credit-width;
+  height: $credit-height;
+  color: white;
+  background-image: url('https://sv1.picz.in.th/images/2021/07/20/2zzeeW.jpg');
+  background-size: 100%;
+  margin: auto;
+  margin-top: 5%;
+  
+  .visa-png {
+    height: 2cm;
+    width: 2cm;
+    margin-top:-0.6cm;
+    margin-left: 5.4cm;
+  }
+
+  .chip-png{
+    height:45px;
+    width: 45px;
+    margin-top: -3.5cm;
+  }
+
+  .card-number {
+    margin-top: 0.4cm;
+    font-size: 1.5rem;
+  }
+
+  .card-holder-head {
+    margin-top: 2.5cm;
+    font-size: 0.6rem;
+    color: lightgray;
+  }
+
+  .card-holder {
+    margin-top: -0.5cm;
+  }
+}
+
+.info-card {
+  z-index: 0;
+  width: $credit-width * 1.5;
+  margin: auto;
+  margin-top: -2cm;
+
+  h3 {
+    margin-top: 2cm;
+    text-align: center;
+  }
+
+  input {
+    box-shadow: 2px 2px 6px #242156;
+    border-radius: 2mm;
+    border: none;
+    z-index: 1;
+    width: 100%;
+    padding:0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  input[type='button'] {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: white;
+    background-color: #FDC7C7;
+  }
+
+  .content {
+    width: 100%;
+    gap: -1;
+    .EXPnCVV{
+      width: 40%;
+      gap: 5%;
+    }
+
+    
+  }
+}
