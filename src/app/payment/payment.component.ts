@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { isNull } from '@angular/compiler/src/output/output_ast';
-import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-payment',
@@ -11,6 +9,7 @@ import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 export class PaymentComponent implements OnInit {
   @ViewChild('Expdate') Expdate?: ElementRef;
   @ViewChild('cardType') cardType?: ElementRef;
+  @ViewChild('cardTypeBack') cardTypeB?: ElementRef;
 
   constructor(private httpClinet: HttpClient) { }
 
@@ -25,7 +24,7 @@ export class PaymentComponent implements OnInit {
   cardHolder: string = "Name";
   cardExp: string = "##/##";
   cardCVV: any = null;
-  selectType: string = '0';
+  selectType: number =0 ;
 
   setCardNumber() {
     if (isNaN(this.getNumber)) {
@@ -33,14 +32,30 @@ export class PaymentComponent implements OnInit {
       this.getNumber = null;
     }
     else {
+      if(this.getNumber.substr(0,1)=='4'||this.getNumber.substr(0,1)=='5'){
+        this.selectType=parseInt(this.getNumber.substr(0,1))-4;
+        console.log(this.selectType);
+        
+        if(this.cardTypeB&&this.cardType){
+        this.cardType.nativeElement.src = this.cardTypeArr[this.selectType]
+        this.cardTypeB.nativeElement.src = this.cardTypeArr[this.selectType]
+        }
+      }
+      else{
+        this.cardNumber = "#### #### #### ####";
+        this.getNumber = null;
+      }
+      
       this.cardNumber = this.getNumber.replace(/(.{4})/g, '$1 ').trim();
     }
+    
   }
 
   setCVV() {
     if (isNaN(this.cardCVV)) {
       this.cardCVV = null;
     }
+
   }
   setName() {
     let i: number = 0;
@@ -76,13 +91,6 @@ export class PaymentComponent implements OnInit {
 
     if (this.cardNumber.length === 0) {
       this.cardNumber = "#### #### #### ####";
-      booltemp = false;
-    } 
-    else if((this.selectType == '1' && this.cardNumber.substr(0, 1) == '4' && this.cardNumber.length >= 16) ||
-    (this.selectType == '0' && this.cardNumber.substr(0, 1) == '5' && this.cardNumber.length == 19)) {
-      alert('Invalid card number or card type');
-      this.cardNumber = "#### #### #### ####";
-      this.getNumber=null;
       booltemp = false;
     }
     
@@ -121,22 +129,6 @@ export class PaymentComponent implements OnInit {
     return booltemp;
   }
 
-  changeType() {
-    if (this.cardType) {
-      this.cardType.nativeElement.src = this.cardTypeArr[parseInt(this.selectType)]
-      if(parseInt(this.selectType)==0){
-        this.cardType.nativeElement.style.height="2cm";
-        this.cardType.nativeElement.style.margin="0";
-
-      }
-      else if(parseInt(this.selectType)==1){
-        this.cardType.nativeElement.style.height="1.5cm";
-        this.cardType.nativeElement.style.margin="0.25cm auto";
-
-      }
-    }
-  }
-
   submitClick() {
     if (this.checkFill()) {
       this.httpClinet.post<any>('http://localhost:3000/payment/add', {
@@ -147,10 +139,14 @@ export class PaymentComponent implements OnInit {
         cType: this.selectType
       }).subscribe(
         (response) => {
-          if (response == 2){
-            alert("Success")
-            location.reload();
-          }
+		  if(response==1)
+			alert("Incorrect information")
+          else if (response == 2)
+            alert("This card has been added")
+		  else if(response==3)
+			alert("This card is already exist");
+		  
+		  location.reload();
         }
       );
     }

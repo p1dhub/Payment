@@ -1,46 +1,56 @@
-<div class="credit-card card">
-    <div class="visa-png"><img src="https://logodix.com/logo/1153460.png" #cardType></div>
-    <div class="chip-png"><img src="https://img.icons8.com/office/80/000000/sim-card-chip.png"></div>
-    <div class="card-number">
-        <p>{{cardNumber}}</p>
+<div class="card">
+  <div class="card__front card__part">
+    <img class="card__front-square card__square" src="https://img.icons8.com/office/80/000000/sim-card-chip.png">
+    <img class="card__front-logo card__logo" src="https://logodix.com/logo/1153460.png" #cardType>
+    <p class="card_numer">{{cardNumber}}</p>
+    <div class="card__space-75">
+      <span class="card__label">Card holder</span>
+      <p class="card__info">{{cardHolder}}</p>
     </div>
-    <div class="card-holder">
-        <p>{{cardHolder | uppercase}}</p>
+    <div class="card__space-25">
+      <span class="card__label">Expires</span>
+      <p class="card__info">{{cardExp}}</p>
     </div>
-    <div class="card-exp">
-        <p>{{cardExp}}</p>
+  </div>
+
+  <div class="card__back card__part">
+    <div class="card__black-line"></div>
+    <div class="card__back-content">
+      <div class="card__secret">
+        <p class="card__secret--last">{{cardCVV}}</p>
+      </div>
+      <img class="card__back-logo card__logo" src="https://logodix.com/logo/1153460.png" #cardTypeBack>
     </div>
-    <div></div>
+  </div>
+</div>
 
 
-</div>
-<div class="info-card card">
-    <h3>Payment</h3>
-    <div class="content">
-        <div class="cardnum">
-            <label>Credit/Debit card number</label><br>
-        <input type="text" placeholder="#### #### #### ####" inputmode="numeric" maxlength="16" [(ngModel)]="getNumber"
-            (change)="setCardNumber()">
-        </div>
-        <div class="divtype">
-            <label>Type of Card</label>
-            <mat-select [(value)]="selectType" >
-                <mat-option value="0" (click)="changeType()">VISA</mat-option>
-                <mat-option value="1" (click)="changeType()">Mastercard</mat-option>
-              </mat-select>
-        </div>
-        
-        <div class="expdate">
-            <label>Expiry date MM/YY</label><br>
-            <input type="month" [(ngModel)]="getExp" (change)="setExp()" #Expdate>
-        </div>
-        <div class="cvvnum">
-            <label>CCV/CVV Number</label><br>
-            <input type="text" inputmode="numeric" maxlength="3" placeholder="000" [(ngModel)]="cardCVV"
-                (change)="setCVV()">
-        </div>
-        <label>Card Holder name (English)</label><br>
-        <input type="text" placeholder="Name" [(ngModel)]="getName" (change)="setName()">
+
+
+
+<div class="info-card">
+  <h3>Payment</h3>
+  <div class="content">
+    <div>
+      <label>Credit/Debit card number</label><br>
+      <input type="text" placeholder="#### #### #### ####" inputmode="numeric" maxlength="16" [(ngModel)]="getNumber"
+        (change)="setCardNumber()">
     </div>
-    <input type="button" value="Submit" (click)="submitClick()">
+    <div class="expdate">
+      <label>Expiry date MM/YY</label><br>
+      <input type="month" [(ngModel)]="getExp" (change)="setExp()" #Expdate>
+    </div>
+    <div class="cvvnum">
+      <label>CCV/CVV Number</label><br>
+      <input type="text" inputmode="numeric" maxlength="3" placeholder="###" [(ngModel)]="cardCVV" (change)="setCVV()">
+    </div>
+    <div>
+      <label>Card Holder name (English)</label><br>
+      <input type="text" placeholder="Name" [(ngModel)]="getName" (change)="setName()">
+    </div>
+  </div>
+  <input type="button" value="Submit" (click)="submitClick()">
 </div>
+
+
+<a href="https://freefrontend.com/css-credit-cards/" class="ref">Card By Freefrontend</a>

@@ -1,70 +1,202 @@
-$credit-height: 5.398cm;
-$credit-width: 8.56cm;
-
 .card {
+  margin: 5% auto;
+  width: 320px;
+  height: 190px;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  perspective: 600px;
+  border: none;
+  background-color: transparent;
+}
+
+.card__part {
+  box-shadow: 5px 5px 10px black;
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+  left: 0;
+  display: inline-block;
+  width: 320px;
+  height: 190px;
+  background-image:
+    linear-gradient(
+      to right bottom,
+      #fd696b,
+      #fa616e,
+      #f65871,
+      #f15075,
+      #ec4879
+    ); /*linear-gradient(to right bottom, #fd8369, #fc7870, #f96e78, #f56581, #ee5d8a)*/
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px;
+
+  -webkit-transition: all 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition: all 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: all 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+
+.card__front {
+  padding: 18px;
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+}
+
+.card__back {
+  padding: 18px 0;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+}
+
+.card__black-line {
+  margin-top: 5px;
+  height: 38px;
+  background-color: #303030;
+}
+
+.card__logo {
+  margin-top: -0.3cm;
+  height: 1.5cm;
+}
+
+.card__front-logo {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+.card__square {
+  border-radius: 5px;
+  height: 35px;
+}
+
+.card_numer {
+  display: block;
+  width: 100%;
+  word-spacing: 4px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.card__space-75 {
+  width: 75%;
+  float: left;
+}
+
+.card__space-25 {
+  width: 25%;
+  float: left;
+}
+
+.card__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 1px;
+}
+
+.card__info {
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 16px;
+  line-height: 18px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card__back-content {
+  padding: 15px 15px 0;
+}
+.card__secret--last {
+  color: white;
+  text-align: right;
+  margin: 0;
+  font-size: 14px;
+}
+
+.card__secret {
+  padding: 5px 12px;
+  background-color: transparent;
+  position: relative;
+}
+
+.card__secret:before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  height: calc(100% + 6px);
+  width: calc(100% - 42px);
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ededed,
+    #ededed 5px,
+    #f9f9f9 5px,
+    #f9f9f9 10px
+  );
+}
+
+.card__back-logo {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.card__back-square {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+.card:hover .card__front {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
+
+.card:hover .card__back {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+}
+
+.ref {
+  color: #ec4879;
+}
+
+.info-card {
   border-radius: 2mm;
   background-color: white;
   box-shadow: 5px 5px 10px black;
   padding: 1.5rem;
-}
-
-.credit-card {
-  z-index: 1;
-  width: $credit-width;
-  height: $credit-height;
-  color: white;
-  background-image: url('https://sv1.picz.in.th/images/2021/07/20/2zzeeW.jpg');
-  background-size: 100%;
-  margin: auto;
-  margin-top: 5%;
-
-  .visa-png {
-    margin-top: -0.6cm;
-    margin-left: 5.4cm;
-    height: 3cm;
-    img {
-      height: 2cm;
-      width: 2cm;
-    }
-  }
-
-  .chip-png {
-    margin-top: -1.5cm;
-    img {
-      height: 1cm;
-      width: 1cm;
-    }
-  }
-
-  .card-number {
-    margin-top: 0.8cm;
-    font-size: 24px;
-  }
-
-  .card-holder {
-    margin-top: 0.5cm;
-    font-size: 18px;
-  }
-
-  .card-exp {
-    margin-top: -1.1cm;
-    margin-left: 5cm;
-    font-size: 16px;
-  }
-}
-
-.info-card {
   z-index: 0;
-  width: $credit-width * 1.3;
+  width: 400px;
   margin: auto;
-  margin-top: -2cm;
+  margin-top: -7%;
 
   h3 {
-    margin-top: 2cm;
+    margin-top: 5%;
     text-align: center;
+    font-weight: 500;
   }
 
-  input,mat-select {
+  input,
+  mat-select {
     box-shadow: 2px 2px 6px #242156;
     border-radius: 2mm;
     z-index: 1;
@@ -76,7 +208,8 @@ $credit-width: 8.56cm;
     border-color: #eee;
   }
 
-  input:focus,mat-select:focus {
+  input:focus,
+  mat-select:focus {
     outline: none;
     border-color: #ee9ca7;
   }
@@ -96,16 +229,6 @@ $credit-width: 8.56cm;
 
   .content {
     width: 100%;
-
-    .cardnum {
-      width: 65%;
-      float: left;
-    }
-
-    .divtype {
-      width: 30%;
-      float: right;
-    }
 
     .expdate {
       width: 48%;
